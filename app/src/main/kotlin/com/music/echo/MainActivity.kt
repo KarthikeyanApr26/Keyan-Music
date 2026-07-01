@@ -171,6 +171,7 @@ import iad1tya.echo.music.constants.PureBlackKey
 import iad1tya.echo.music.constants.SYSTEM_DEFAULT
 import iad1tya.echo.music.constants.SelectedThemeColorKey
 import iad1tya.echo.music.constants.StopMusicOnTaskClearKey
+import iad1tya.echo.music.constants.UpdateMotoDialogShownKey
 import iad1tya.echo.music.constants.UseNewMiniPlayerDesignKey
 import iad1tya.echo.music.db.MusicDatabase
 import iad1tya.echo.music.db.entities.SearchHistory
@@ -194,6 +195,7 @@ import iad1tya.echo.music.ui.player.BottomSheetPlayer
 import iad1tya.echo.music.ui.screens.Screens
 import iad1tya.echo.music.ui.screens.SettingDialoge
 import iad1tya.echo.music.ui.screens.WelcomeDialog
+import iad1tya.echo.music.ui.screens.UpdateMotoDialog
 import iad1tya.echo.music.ui.screens.navigationBuilder
 import iad1tya.echo.music.ui.screens.settings.DarkMode
 import iad1tya.echo.music.ui.screens.settings.NavigationTab
@@ -779,9 +781,18 @@ class MainActivity : ComponentActivity() {
                 val (lastOpenedVersionCode, setLastOpenedVersionCode) = rememberPreference(iad1tya.echo.music.constants.LastOpenedVersionCodeKey, -1)
                 var showWelcomeDialog by remember { mutableStateOf(false) }
 
+                val (updateMotoDialogShown, setUpdateMotoDialogShown) = rememberPreference(UpdateMotoDialogShownKey, false)
+                var showUpdateMotoDialog by remember { mutableStateOf(false) }
+
                 LaunchedEffect(lastOpenedVersionCode) {
                     if (lastOpenedVersionCode < BuildConfig.VERSION_CODE) {
                         showWelcomeDialog = true
+                    }
+                }
+
+                LaunchedEffect(updateMotoDialogShown) {
+                    if (!updateMotoDialogShown) {
+                        showUpdateMotoDialog = true
                     }
                 }
 
@@ -791,7 +802,7 @@ class MainActivity : ComponentActivity() {
                         handleRecognitionIntent(pendingIntent!!, navController)
                         handleAssistantSearchIntent(pendingIntent!!, navController)
                         pendingIntent = null
-                    } else if (intent != null && intent.action == Intent.ACTION_VIEW) {
+                    } else if (intent != null && (intent.action == Intent.ACTION_VIEW || intent.action == Intent.ACTION_SEND)) {
                         handleDeepLinkIntent(intent, navController)
                     } else if (intent != null && intent.action == ACTION_RECOGNITION) {
                         handleRecognitionIntent(intent, navController)
@@ -802,7 +813,7 @@ class MainActivity : ComponentActivity() {
 
                 DisposableEffect(Unit) {
                     val listener = Consumer<Intent> { intent ->
-                        if (intent.action == Intent.ACTION_VIEW) {
+                        if (intent.action == Intent.ACTION_VIEW || intent.action == Intent.ACTION_SEND) {
                             handleDeepLinkIntent(intent, navController)
                         } else if (intent.action == ACTION_RECOGNITION) {
                             handleRecognitionIntent(intent, navController)
@@ -1251,13 +1262,34 @@ class MainActivity : ComponentActivity() {
                             }
                         )
                     }
+
+                    if (showUpdateMotoDialog) {
+                        UpdateMotoDialog(
+                            onDismissRequest = {
+                                showUpdateMotoDialog = false
+                                setUpdateMotoDialogShown(true)
+                            }
+                        )
+                    }
                 }
             }
         }
     }
 
     private fun handleDeepLinkIntent(intent: Intent, navController: NavHostController) {
-        val uri = intent.data ?: intent.extras?.getString(Intent.EXTRA_TEXT)?.toUri() ?: return
+        var uri = intent.data
+        if (uri == null) {
+            val extraText = intent.extras?.getString(Intent.EXTRA_TEXT)
+            if (extraText != null) {
+                val urlRegex = "(https?://[^\\s]+)".toRegex()
+                val match = urlRegex.find(extraText)
+                if (match != null) {
+                    uri = match.value.toUri()
+                }
+            }
+        }
+        if (uri == null) return
+
         intent.data = null
         intent.removeExtra(Intent.EXTRA_TEXT)
         val coroutineScope = lifecycle.coroutineScope
@@ -1306,7 +1338,7 @@ class MainActivity : ComponentActivity() {
             else -> {
                 val videoId = when {
                     path == "watch" -> uri.getQueryParameter("v")
-                    uri.host == "youtu.be" -> uri.pathSegments.firstOrNull()
+                    uri.host == "youtu.be" || uri.host == "share.echomusic.fun" -> uri.pathSegments.firstOrNull()
                     else -> null
                 }
 
@@ -1316,6 +1348,11 @@ class MainActivity : ComponentActivity() {
                     coroutineScope.launch(Dispatchers.IO) {
                         YouTube.queue(listOf(videoId), playlistId).onSuccess { queue ->
                             withContext(Dispatchers.Main) {
+                                var attempts = 0
+                                while (playerConnection == null && attempts < 20) {
+                                    delay(100)
+                                    attempts++
+                                }
                                 playerConnection?.playQueue(
                                     YouTubeQueue(
                                         WatchEndpoint(videoId = queue.firstOrNull()?.id, playlistId = playlistId),
@@ -1332,6 +1369,11 @@ class MainActivity : ComponentActivity() {
                         YouTube.queue(null, playlistId).onSuccess { queue ->
                             val firstItem = queue.firstOrNull()
                             withContext(Dispatchers.Main) {
+                                var attempts = 0
+                                while (playerConnection == null && attempts < 20) {
+                                    delay(100)
+                                    attempts++
+                                }
                                 playerConnection?.playQueue(
                                     YouTubeQueue(
                                         WatchEndpoint(videoId = firstItem?.id, playlistId = playlistId),
