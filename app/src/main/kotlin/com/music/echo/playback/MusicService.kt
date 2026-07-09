@@ -3505,7 +3505,7 @@ class MusicService :
                 }
             }
 
-            val job = scope.launch(Dispatchers.Default) {
+            val job = scope.launch(Dispatchers.IO) {
                 val mutex = when (priority) {
                     BeatAnalysisPriority.IMMEDIATE -> immediateBeatAnalysisMutex
                     BeatAnalysisPriority.LOOKAHEAD -> lookaheadBeatAnalysisMutex
