@@ -1,30 +1,19 @@
 <div align="center">
-  <img src="assets/Echo-new.png" alt="Echo Music Logo" width="140"/>
+  <img src="assets/Echo-new.png" alt="Keyan Music Logo" width="140"/>
 
-  <h1>Echo Music</h1>
+  <h1>Keyan Music</h1>
 
   <p><strong>A modern Android music app with ad-free streaming, synced lyrics, offline playback, and an intuitive user experience.
 </strong></p>
 
-  [![GitHub Release](https://img.shields.io/github/v/release/iad1tya/Echo-Music?style=for-the-badge&color=6f42c1)](https://github.com/iad1tya/Echo-Music/releases)
-  [![GitHub Stars](https://img.shields.io/github/stars/iad1tya/Echo-Music?style=for-the-badge&color=e3b341)](https://github.com/iad1tya/Echo-Music/stargazers)
-  [![License](https://img.shields.io/github/license/iad1tya/Echo-Music?style=for-the-badge&color=28a745)](LICENSE)
-  [![Telegram](https://img.shields.io/badge/Telegram-Join-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/EchoMusicApp)
-  [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/EcfV3AxH5c)
-  [![Weblate](https://img.shields.io/weblate/progress/echo-music?server=https%3A%2F%2Fhosted.weblate.org&style=for-the-badge)](https://hosted.weblate.org/projects/echo-music/)
+  [![GitHub Release](https://img.shields.io/github/v/release/KarthikeyanApr26/Keyan-Music?style=for-the-badge&color=6f42c1)](https://github.com/KarthikeyanApr26/Keyan-Music/releases)
+  [![GitHub Stars](https://img.shields.io/github/stars/KarthikeyanApr26/Keyan-Music?style=for-the-badge&color=e3b341)](https://github.com/KarthikeyanApr26/Keyan-Music/stargazers)
+  [![License](https://img.shields.io/github/license/KarthikeyanApr26/Keyan-Music?style=for-the-badge&color=28a745)](LICENSE)
   
-  <a href="https://trendshift.io/repositories/20485" target="_blank">
-    <img src="https://trendshift.io/api/badge/repositories/20485" alt="EchoMusicApp%2FEcho-Music | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
-  </a>
-
   <br>
 
-  <a href="https://echomusic.fun/download">
+  <a href="https://github.com/KarthikeyanApr26/Keyan-Music/releases/latest">
     <img src="assets/download.png" alt="Download" width="180"/>
-  </a>
-  &nbsp;
-  <a href="https://echomusic.fun/obtainium">
-    <img src="assets/obtainium.png" alt="Get it on Obtainium" width="180"/>
   </a>
 </div>
 
@@ -32,7 +21,7 @@
 
 ## Overview
 
-Echo Music delivers a seamless, premium listening experience by leveraging YouTube Music's vast library — without the ads. It adds powerful extras including offline downloads, real-time synchronized lyrics, and environment-aware music recognition.
+Keyan Music delivers a seamless, premium listening experience by leveraging YouTube Music's vast library — without the ads. It adds powerful extras including offline downloads, real-time synchronized lyrics, and environment-aware music recognition.
 
 ---
 
@@ -52,11 +41,7 @@ Echo Music delivers a seamless, premium listening experience by leveraging YouTu
   - [Android Installation](#android-installation)
   - [Building from Source](#building-from-source)
 - [Translations](#translations)
-- [Community & Support](#community--support)
-- [Support the Project](#support-the-project)
-  - [Cryptocurrency](#cryptocurrency)
 - [Special Thanks](#special-thanks)
-- [Star History](#star-history)
 
 ---
 
@@ -149,14 +134,14 @@ Echo Music delivers a seamless, premium listening experience by leveraging YouTu
 
 ### Android Installation
 
-Download the latest pre-compiled APK from the [Releases Page](https://github.com/iad1tya/Echo-Music/releases/latest).
+Download the latest pre-compiled APK from the [Releases Page](https://github.com/KarthikeyanApr26/Keyan-Music/releases/latest).
 
 ### Building from Source
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/iad1tya/Echo-Music.git
-   cd Echo-Music
+   git clone https://github.com/KarthikeyanApr26/Keyan-Music.git
+   cd Keyan-Music
    ```
 
 2. **Configure Android SDK**
@@ -170,7 +155,7 @@ Download the latest pre-compiled APK from the [Releases Page](https://github.com
    Firebase is required for analytics and crash reporting. See the instructions in [SETUP.md](SETUP.md#3-configure-firebase-optional) for adding your `google-services.json`.
 
 4. **Build the Application**
-   Echo Music has two build variants: **FOSS** (without Google Play Services / Cast) and **GMS** (with Cast support).
+   Keyan Music has two build variants: **FOSS** (without Google Play Services / Cast) and **GMS** (with Cast support).
    
    To build the FOSS Universal Debug variant:
    ```bash
@@ -186,48 +171,13 @@ Download the latest pre-compiled APK from the [Releases Page](https://github.com
 
 ## Translations
 
-<h3>We use Weblate to translate Echo Music. <a href="https://hosted.weblate.org/projects/echo-music/">Help us bring Echo Music to more people!</a></h3>
-
-<a href="https://hosted.weblate.org/projects/echo-music/">
-  <img src="https://hosted.weblate.org/widgets/echo-music/-/horizontal-auto.svg" alt="Translation status" />
-</a>
-
----
-
-## Community & Support
-
-Join the community for updates, discussions, and help.
-
-<div align="center">
-  <a href="https://discord.gg/EcfV3AxH5c" style="text-decoration:none;"><img src="assets/discord.png" alt="Discord Logo" width="140" style="margin: 0 10px;"/></a>
-  <a href="https://t.me/EchoMusicApp" style="text-decoration:none;"><img src="assets/telegram.png" alt="Telegram Logo" width="130" style="margin: 0 10px;"/></a>
-</div>
-
----
-
-## Support the Project
-
-If Echo Music has been useful to you, consider supporting its development.
-
-<div align="center">
-  <a href="https://buymeacoffee.com/iad1tya" style="text-decoration:none;"><img src="assets/bmac.png" alt="Buy Me A Coffee Logo" width="140" style="margin: 0 10px;"/></a>
-  <a href="https://intradeus.github.io/http-protocol-redirector/?r=upi://pay?pa=iad1tya@upi&pn=Aditya%20Yadav&am=&tn=Thank%20You" style="text-decoration:none;"><img src="assets/upi.svg" alt="UPI Logo" width="100" style="margin: 0 10px;"/></a>
-  <a href="https://www.patreon.com/cw/iad1tya" style="text-decoration:none;"><img src="assets/patreon3.png" alt="Patreon Logo" width="100" style="margin: 0 10px;"/></a>
-</div>
-
-### Cryptocurrency
-
-| Network | Address |
-| :--- | :--- |
-| Bitcoin | `bc1qcvyr7eekha8uytmffcvgzf4h7xy7shqzke35fy` |
-| Ethereum | `0x51bc91022E2dCef9974D5db2A0e22d57B360e700` |
-| Solana | `9wjca3EQnEiqzqgy7N5iqS1JGXJiknMQv6zHgL96t94S` |
+<h3>We use Weblate to translate Keyan Music.</h3>
 
 ---
 
 ## Special Thanks
 
-Echo Music stands on the shoulders of several excellent open-source projects. Sincere thanks to:
+Keyan Music stands on the shoulders of several excellent open-source projects. Sincere thanks to:
 
 | Project | Description |
 | :--- | :--- |
@@ -238,12 +188,6 @@ Echo Music stands on the shoulders of several excellent open-source projects. Si
 | [Music Recognizer](https://github.com/aleksey-saenko/MusicRecognizer) | Audio recognition (Echo Find) |
 | [Flow](https://github.com/a-edev/Flow) | AI queue generation engine (Echo Brain) |
 | [zemer-cipher](hhttps://github.com/ZemerTeam/zemer-cipher) | YouTube cipher deobfuscation and PoToken generation |
-
----
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=EchoMusicApp/Echo-Music&type=timeline&legend=top-left)](https://www.star-history.com/#EchoMusicApp/Echo-Music&type=timeline&legend=top-left)
 
 ---
 
